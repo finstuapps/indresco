@@ -1,4 +1,4 @@
-import { force } from "jaypie";
+import { ConfigurationError, force, log } from "jaypie";
 
 interface HandlerConfigOptions {
   locals?: Record<string, any>;
@@ -19,6 +19,8 @@ const handlerConfig = (
   nameOrConfig: string | (HandlerConfig & { name: string }),
   options: HandlerConfigOptions = {}
 ): HandlerConfig => {
+  log.trace("[handlerConfig] Creating handler configuration");
+  
   let name: string;
   let locals: Record<string, any>;
   let setup: Array<() => void | Promise<void>>;
@@ -31,6 +33,13 @@ const handlerConfig = (
     name = nameOrConfig;
     ({ locals = {}, setup = [], teardown = [], validate = [] } = options);
   }
+
+  if (!name) {
+    log.error("[handlerConfig] Handler name is required");
+    throw new ConfigurationError();
+  }
+
+  log.var({ handlerName: name });
 
   return {
     name,
