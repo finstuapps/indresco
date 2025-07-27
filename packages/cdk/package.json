@@ -1,0 +1,30 @@
+{
+  "name": "@indresco/cdk",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "cdk": "dist/cdk.js"
+  },
+  "scripts": {
+    "build": "vite build",
+    "cdk": "cdk",
+    "clean": "rimfaf cdk.out",
+    "format": "eslint --fix",
+    "format:package": "sort-package-json",
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^24.1.0",
+    "aws-cdk": "^2.1022.0"
+  },
+  "dependencies": {
+    "@jaypie/constructs": "^1.1.29",
+    "aws-cdk-lib": "^2.207.0",
+    "constructs": "^10.4.2",
+    "source-map-support": "^0.5.21"
+  }
+}

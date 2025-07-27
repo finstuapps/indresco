@@ -1,0 +1,35 @@
+{
+  "name": "indresco",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "clean": "npm run clean --workspaces && npm run clean:root",
+    "clean:root": "rimraf node_modules package-lock.json",
+    "dev": "npm --workspace packages/express run dev",
+    "dev:express": "npm --workspace packages/express run dev",
+    "format": "eslint --fix",
+    "format:package": "sort-package-json ./package.json ./packages/*/package.json",
+    "lint": "eslint",
+    "start": "npm --workspace packages/express run start",
+    "start:express": "npm --workspace packages/express run start",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "typecheck": "npm run typecheck --workspaces"
+  },
+  "devDependencies": {
+    "@jaypie/eslint": "^1.1.24",
+    "@jaypie/testkit": "^1.1.31",
+    "eslint": "^9.32.0",
+    "rimraf": "^6.0.1",
+    "sort-package-json": "^3.4.0",
+    "tsx": "^4.20.3",
+    "vite": "^7.0.6",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^3.2.4"
+  }
+}
