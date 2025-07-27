@@ -33,14 +33,10 @@ export class AppStack extends JaypieAppStack {
       zone: API_ZONE,
     });
 
-    new JaypieLambda(
-      this,
-      "lambdaWorker",
-      {
-        code: lambda.Code.fromAsset("../lambda"),
-        handler: LAMBDA_WORKER_HANDLER,
-        secrets: [mongoConnectionString],
-      },
-    );
+    new JaypieLambda(this, "lambdaWorker", {
+      code: lambda.Code.fromAsset("../lambda"),
+      handler: LAMBDA_WORKER_HANDLER,
+      secrets: [mongoConnectionString],
+    });
   }
 }

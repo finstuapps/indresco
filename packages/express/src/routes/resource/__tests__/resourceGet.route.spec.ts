@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { log } from "jaypie";
 import resourceGet from "../resourceGet.route.js";
 
@@ -15,7 +15,7 @@ describe("Resource Get Route", () => {
       } as any;
 
       const response = await resourceGet(mockRequest);
-      
+
       expect(response).toBeDefined();
     });
   });
@@ -28,7 +28,7 @@ describe("Resource Get Route", () => {
       } as any;
 
       const response = await resourceGet(mockRequest);
-      
+
       expect(response.message).toBe("Resource endpoint");
       expect(response.query).toEqual({ search: "test" });
       expect(response.timestamp).toBeDefined();
@@ -44,7 +44,7 @@ describe("Resource Get Route", () => {
       } as any;
 
       const response = await resourceGet(mockRequest);
-      
+
       expect(response.message).toBe("Resource endpoint");
       expect(response.query).toEqual({});
       expect(response.timestamp).toBeDefined();
@@ -57,8 +57,10 @@ describe("Resource Get Route", () => {
       } as any;
 
       const response = await resourceGet(mockRequest);
-      
-      expect(response.timestamp).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
+
+      expect(response.timestamp).toMatch(
+        /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/,
+      );
     });
   });
 });

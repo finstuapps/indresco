@@ -17,10 +17,10 @@ interface HandlerConfig {
 
 const handlerConfig = (
   nameOrConfig: string | (HandlerConfig & { name: string }),
-  options: HandlerConfigOptions = {}
+  options: HandlerConfigOptions = {},
 ): HandlerConfig => {
   log.trace("[handlerConfig] Creating handler configuration");
-  
+
   let name: string;
   let locals: Record<string, any>;
   let setup: Array<() => void | Promise<void>>;
@@ -28,7 +28,13 @@ const handlerConfig = (
   let validate: Array<() => boolean | Promise<boolean>>;
 
   if (typeof nameOrConfig === "object") {
-    ({ name, locals = {}, setup = [], teardown = [], validate = [] } = nameOrConfig);
+    ({
+      name,
+      locals = {},
+      setup = [],
+      teardown = [],
+      validate = [],
+    } = nameOrConfig);
   } else {
     name = nameOrConfig;
     ({ locals = {}, setup = [], teardown = [], validate = [] } = options);
@@ -46,7 +52,9 @@ const handlerConfig = (
     locals: { ...force.object(locals) },
     setup: [...force.array(setup)] as Array<() => void | Promise<void>>,
     teardown: [...force.array(teardown)] as Array<() => void | Promise<void>>,
-    validate: [...force.array(validate)] as Array<() => boolean | Promise<boolean>>,
+    validate: [...force.array(validate)] as Array<
+      () => boolean | Promise<boolean>
+    >,
   };
 };
 

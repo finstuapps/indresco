@@ -10,11 +10,11 @@ interface ResourceGetResponse {
 const handler = async (req: Request): Promise<ResourceGetResponse> => {
   log.trace("[resourceGet] Handling resource GET request");
   const { query } = req;
-  
+
   if (Object.keys(query).length > 0) {
     log.var({ queryKeys: Object.keys(query).length });
   }
-  
+
   return {
     message: "Resource endpoint",
     query,
