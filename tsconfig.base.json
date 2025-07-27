@@ -9,6 +9,10 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "sourceMap": true,
-    "composite": true
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@indresco/express/*": ["./packages/express/src/*"]
+    }
   }
 }
